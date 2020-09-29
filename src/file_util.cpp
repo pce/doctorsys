@@ -1,14 +1,15 @@
 // #include <dirent.h>
 #include <unistd.h>
 #include <filesystem>
-#include <iostream>
+#include <fstream>
+// #include <iostream>
 #include <string>
+#include <sstream>
 #include <vector>
 
 #include "file_util.h"
 
 using std::stof;
-using std::string;
 using std::to_string;
 using std::vector;
 
@@ -21,15 +22,15 @@ using std::vector;
  * @return std::string
  */
 std::string FileUtil::GetValueOfLine(std::string file, std::string find_str) {
-  string line{""};
-  string key;
-  string value;
+  std::string line{""};
+  std::string key;
+  std::string value;
   std::ifstream filestream(file);
   if (filestream.is_open()) {
     while (std::getline(filestream, line)) {
       if (line.rfind(find_str, 0) == 0) {
         // trim processes and whitespace
-        line.replace(0, string(find_str).length(), string(""));
+        line.replace(0, std::string(find_str).length(), std::string(""));
         return line;
       }
     }
@@ -59,9 +60,9 @@ std::string FileUtil::GetContentsOfFile(std::string file) {
  * @param n
  * @return std::string
  */
-std::string FileUtil::GetNthValue(string file, int n, char sep) {
-  string line;
-  string token{""};
+std::string FileUtil::GetNthValue(std::string file, int n, char sep) {
+  std::string line;
+  std::string token{""};
   std::ifstream filestream(file);
   if (!filestream.is_open()) {
     throw std::runtime_error("Could not open file: " + file);
