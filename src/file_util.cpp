@@ -39,7 +39,7 @@ std::string FileUtil::GetValueOfLine(std::string file, std::string find_str) {
 }
 
 /**
- * @brief
+ * @brief Return Contents of File as string
  *
  * @param file
  * @return std::string

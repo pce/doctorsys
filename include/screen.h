@@ -8,11 +8,12 @@
 
 namespace Screen {
     void Setup();
+
     void Display(System& sys);
+    void DisplaySystem(System& system, WINDOW* window, int count);
+    //void DisplayProcesses(std::vector<Process>& processes, WINDOW* window, int n);
     void Update();
 
-// void Display(System& system, int n = 10);
-// void DisplaySystem(System& system, WINDOW* window);
 // void DisplayProcesses(std::vector<Process>& processes, WINDOW* window, int n);
 // std::string ProgressBar(float percent);
 };

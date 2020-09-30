@@ -8,6 +8,6 @@
 #include "system.h"
 
 long int System::UpTime() { 
-    return 42; 
-    //_system.UpTime(); 
+    return 3662; 
+    //_system.UpTime();
 };

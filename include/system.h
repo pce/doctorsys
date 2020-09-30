@@ -10,4 +10,12 @@ class System {
     long UpTime();    
 };
 
+/*
+class System
+{
+  public:
+	virtual long int UpTime() = 0;
+};
+*/
+
 #endif
