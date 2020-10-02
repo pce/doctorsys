@@ -19,10 +19,10 @@ std::unique_ptr<System> System::Factory() {
     return SystemLinux;
 #endif
 */
-    // memleak: return new SystemLinux;
-    return std::make_unique<SystemLinux>();
-    // return std::unique_ptr<SystemLinux>();
-    // return nullptr;
+
+  std::unique_ptr<System> sys = std::make_unique<SystemLinux>();
+  return std::move(sys);        
+  // return nullptr;
 }
 
 /*
