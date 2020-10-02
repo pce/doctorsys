@@ -10,6 +10,7 @@
 #include "system_linux.h"
 
 
+
 std::unique_ptr<System> System::Factory() {
 /*
 #if defined(OS_DARWIN)
@@ -20,8 +21,9 @@ std::unique_ptr<System> System::Factory() {
 #endif
 */
 
-  std::unique_ptr<System> sys = std::make_unique<SystemLinux>();
-  return std::move(sys);        
+  return std::make_unique<SystemLinux>();
+//   std::unique_ptr<System> sys = std::make_unique<SystemLinux>();
+//   return std::move(sys);        
   // return nullptr;
 }
 

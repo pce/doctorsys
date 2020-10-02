@@ -5,7 +5,8 @@
 
 
 int main() {
-  // auto sys = System::Factory();
-  std::unique_ptr<System> sys = std::move(System::Factory());
-  Screen::Display(std::move(sys));
+
+  std::shared_ptr<System> sys = System::Factory();
+  // std::shared_ptr<SystemLinux> sys = std::make_unique<SystemLinux>();
+  Screen::Display(sys);
 }
