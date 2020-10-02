@@ -8,18 +8,19 @@
 
 #include "system.h"
 #include "system_linux.h"
+#include "system_darwin.h"
 
 
 
 std::unique_ptr<System> System::Factory() {
-/*
-#if defined(OS_DARWIN)
-    return SystemDarwin;
+
+#if defined(__linux__)
+  return std::make_unique<SystemLinux>();
 #endif
-#if defined(OS_LINUX)
-    return SystemLinux;
+#if defined(__APPLE__) 
+  return std::make_unique<SystemDarwin>();
 #endif
-*/
+//&& __MACH__)
 
   return std::make_unique<SystemLinux>();
 //   std::unique_ptr<System> sys = std::make_unique<SystemLinux>();

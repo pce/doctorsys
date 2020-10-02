@@ -5,8 +5,8 @@
 
 
 int main() {
-
-  std::shared_ptr<System> sys = System::Factory();
+  // System factory instead of: 
   // std::shared_ptr<SystemLinux> sys = std::make_unique<SystemLinux>();
+  std::shared_ptr<System> sys = System::Factory();
   Screen::Display(sys);
 }
