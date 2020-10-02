@@ -1,15 +1,16 @@
-#include <unistd.h>
-#include <cstddef>
-#include <iostream>
-#include <set>
-#include <string>
-#include <vector>
+// #include <unistd.h>
+// #include <cstddef>
+// #include <iostream>
+// #include <set>
+// #include <string>
+// #include <vector>
+#include <memory>
 
 #include "system.h"
 #include "system_linux.h"
 
 
-System* System::Factory() {
+std::unique_ptr<System> System::Factory() {
 /*
 #if defined(OS_DARWIN)
     return SystemDarwin;
@@ -18,7 +19,9 @@ System* System::Factory() {
     return SystemLinux;
 #endif
 */
-    return new SystemLinux;
+    // memleak: return new SystemLinux;
+    return std::make_unique<SystemLinux>();
+    // return std::unique_ptr<SystemLinux>();
     // return nullptr;
 }
 

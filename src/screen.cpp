@@ -38,7 +38,7 @@ std::string NCursesDisplay::ProgressBar(float percent) {
 }
 */
 
-void Screen::DisplaySystem(System* sys, WINDOW* window, int count) {
+void Screen::DisplaySystem(std::unique_ptr<System> sys, WINDOW* window, int count) {
   int row{0};
   wattron(window, COLOR_PAIR(1));
 
@@ -53,7 +53,7 @@ void Screen::DisplaySystem(System* sys, WINDOW* window, int count) {
 
 }
 
-void Screen::Display(System* sys) {
+void Screen::Display(std::unique_ptr<System> sys) {
   // int n = 10;
   initscr();      // start ncurses
   noecho();       // do not print input values
@@ -72,7 +72,7 @@ void Screen::Display(System* sys) {
     init_pair(2, COLOR_BLUE, COLOR_BLACK);
     box(system_window, 0, 0);
     // box(process_window, 0, 0);
-    DisplaySystem(sys, system_window, count);
+    DisplaySystem(std::move(sys), system_window, count);
     // DisplayProcesses(system.Processes(), process_window, n);
     
     wrefresh(system_window);

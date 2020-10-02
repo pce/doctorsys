@@ -9,8 +9,8 @@
 namespace Screen {
     void Setup();
 
-    void Display(System* sys);
-    void DisplaySystem(System* sys, WINDOW* window, int count);
+    void Display(std::unique_ptr<System> sys);
+    void DisplaySystem(std::unique_ptr<System> sys, WINDOW* window, int count);
     //void DisplayProcesses(std::vector<Process>& processes, WINDOW* window, int n);
     void Update();
 

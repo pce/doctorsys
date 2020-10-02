@@ -8,6 +8,7 @@
 
 int main() {
 
-  System* sys = System::Factory();
-  Screen::Display(sys);
+  // auto sys = System::Factory();
+  std::unique_ptr<System> sys = System::Factory();
+  Screen::Display(std::move(sys));
 }
