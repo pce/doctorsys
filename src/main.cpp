@@ -1,18 +1,13 @@
 #include "screen.h"
-#include "system.h"
 
-/*
-System& SystemFactory() {
-#if defined(OS_DARWIN)
-    return SystemDarwin;
-#endif
-#if defined(OS_LINUX)
-    return SystemLinux;
-#endif
-}
-*/
+#include "system.h"
+#include "system_linux.h"
+
+
+
 
 int main() {
-  System sys; // = SystemFactory();
+
+  System* sys = System::Factory();
   Screen::Display(sys);
 }
