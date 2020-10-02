@@ -1,5 +1,5 @@
-#ifndef SYSTEM_LINUX_H
-#define SYSTEM_LINUX_H
+#ifndef SYSTEM_DARWIN_H
+#define SYSTEM_DARWIN_H
 
 #include <string>
 #include <vector>
@@ -12,5 +12,5 @@ class SystemDarwin : public System
 	  long int UpTime();
 };
 
-
+ 
 #endif
