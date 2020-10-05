@@ -17,21 +17,16 @@ std::unique_ptr<System> System::Factory() {
 #if defined(__linux__)
   return std::make_unique<SystemLinux>();
 #endif
-#if defined(__APPLE__) 
+#if defined(__APPLE__)
   return std::make_unique<SystemDarwin>();
 #endif
 //&& __MACH__)
 
   return std::make_unique<SystemLinux>();
 //   std::unique_ptr<System> sys = std::make_unique<SystemLinux>();
-//   return std::move(sys);        
+//   return std::move(sys);
   // return nullptr;
 }
 
-/*
-long int System::UpTime() { 
-    system_.UpTime();
-};
-*/
 
 
