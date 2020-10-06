@@ -1,26 +1,19 @@
-#include <curses.h>
 #include <chrono>
+#include <curses.h>
+#include <memory>
 #include <string>
 #include <thread>
 #include <vector>
-#include <memory>
 
-#include "screen.h"
 #include "format.h"
-
+#include "screen.h"
 
 // std::string;
 // std::to_string;
 
+void Screen::Setup() {}
 
-void Screen::Setup() {
-
-}
-
-
-void Screen::Update() {
-
-}
+void Screen::Update() {}
 
 /*
 std::string NCursesDisplay::ProgressBar(float percent) {
@@ -39,31 +32,31 @@ std::string NCursesDisplay::ProgressBar(float percent) {
 }
 */
 
-void Screen::DisplaySystem(std::shared_ptr<System> sys, WINDOW* window, int count) {
+void Screen::DisplaySystem(std::shared_ptr<System> sys, WINDOW *window,
+                           int count) {
   int row{0};
   wattron(window, COLOR_PAIR(1));
 
   row++;
-  const char chars[] = { '|','/','-','\\' }; 
+  const char chars[] = {'|', '/', '-', '\\'};
   // mvaddch(row, 2, chars[count%4]);
-  wmove(window, row, 2) == -1 ? -1 : waddch(window, chars[count%4]);
+  wmove(window, row, 2) == -1 ? -1 : waddch(window, chars[count % 4]);
 
   mvwprintw(window, ++row, 2,
             ("Up Time: " + Format::ElapsedTime(sys->UpTime())).c_str());
   wrefresh(window);
-
 }
 
 void Screen::Display(std::shared_ptr<System> sys) {
   // int n = 10;
-  initscr();      // start ncurses
-  noecho();       // do not print input values
-  cbreak();       // terminate ncurses on ctrl + c
-  start_color();  // enable color
+  initscr();     // start ncurses
+  noecho();      // do not print input values
+  cbreak();      // terminate ncurses on ctrl + c
+  start_color(); // enable color
   // curs_set(0);
 
   int x_max{getmaxx(stdscr)};
-  WINDOW* system_window = newwin(9, x_max - 1, 0, 0);
+  WINDOW *system_window = newwin(9, x_max - 1, 0, 0);
   // WINDOW* process_window =
   //     newwin(3 + n, x_max - 1, system_window->_maxy + 1, 0);
   int count = 0;
@@ -75,7 +68,7 @@ void Screen::Display(std::shared_ptr<System> sys) {
     // box(process_window, 0, 0);
     DisplaySystem(sys, system_window, count);
     // DisplayProcesses(system.Processes(), process_window, n);
-    
+
     wrefresh(system_window);
     // wrefresh(process_window);
     refresh();
@@ -90,5 +83,3 @@ void Screen::Display(std::shared_ptr<System> sys) {
   }
   endwin();
 }
-
-

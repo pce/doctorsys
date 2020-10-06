@@ -7,9 +7,8 @@
 #include <memory>
 
 #include "system.h"
-#include "system_linux.h"
 #include "system_darwin.h"
-
+#include "system_linux.h"
 
 std::unique_ptr<System> System::Factory() {
 
@@ -21,10 +20,7 @@ std::unique_ptr<System> System::Factory() {
 #endif
 
   return std::make_unique<SystemLinux>();
-//   std::unique_ptr<System> sys = std::make_unique<SystemLinux>();
-//   return std::move(sys);
+  //   std::unique_ptr<System> sys = std::make_unique<SystemLinux>();
+  //   return std::move(sys);
   // return nullptr;
 }
-
-
-

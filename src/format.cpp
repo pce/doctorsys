@@ -14,9 +14,8 @@ string Format::ElapsedTime(long seconds) {
 
   if (h > 24) {
     days = h / 24;
-    h = h % 24;    
+    h = h % 24;
   }
-
 
   std::string fh = std::to_string(h);
   if (fh.length() < 2) {

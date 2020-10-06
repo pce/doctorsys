@@ -7,15 +7,16 @@
 #include "system.h"
 
 namespace Screen {
-    void Setup();
+void Setup();
 
-    void Display(std::shared_ptr<System> sys);
-    void DisplaySystem(std::shared_ptr<System> sys, WINDOW* window, int count);
-    //void DisplayProcesses(std::vector<Process>& processes, WINDOW* window, int n);
-    void Update();
+void Display(std::shared_ptr<System> sys);
+void DisplaySystem(std::shared_ptr<System> sys, WINDOW *window, int count);
+// void DisplayProcesses(std::vector<Process>& processes, WINDOW* window, int
+// n);
+void Update();
 
-// void DisplayProcesses(std::vector<Process>& processes, WINDOW* window, int n);
-// std::string ProgressBar(float percent);
-};
+// void DisplayProcesses(std::vector<Process>& processes, WINDOW* window, int
+// n); std::string ProgressBar(float percent);
+}; // namespace Screen
 
 #endif

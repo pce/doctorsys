@@ -6,11 +6,9 @@
 
 #include "system.h"
 
-class SystemDarwin : public System
-{
-  public:
-	  long int UpTime();
+class SystemDarwin : public System {
+public:
+  long int UpTime();
 };
 
- 
 #endif

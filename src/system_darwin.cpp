@@ -1,7 +1,7 @@
-#include <sys/sysctl.h>
-#include <chrono> 
-#include <time.h>
+#include <chrono>
 #include <errno.h>
+#include <sys/sysctl.h>
+#include <time.h>
 // #include <dirent.h>
 // #include <unistd.h>
 // #include <filesystem>
@@ -14,18 +14,18 @@
 
 
 long SystemDarwin::UpTime() {
-    std::chrono::milliseconds uptime(0u);
-    struct timeval ts;
-    std::size_t len = sizeof(ts);
-    int mib[2] = { CTL_KERN, KERN_BOOTTIME };
-    if (sysctl(mib, 2, &ts, &len, NULL, 0) == 0) {
-        uptime = std::chrono::milliseconds(
-            static_cast<unsigned long long>(ts.tv_sec)*1000ULL +
-            static_cast<unsigned long long>(ts.tv_usec)/1000ULL
-        );
-        return uptime.count() / 1000;
-    }
-    return 0;
+  struct timeval ts;
+  auto ts_len = sizeof(ts);
+  int mib[2] = {CTL_KERN, KERN_BOOTTIME};
+  auto constexpr mib_len = sizeof(mib) / sizeof(mib[0]);
+  if (sysctl(mib, mib_len, &ts, &ts_len, nullptr, 0) == 0) {
+    std::chrono::system_clock::time_point boot{
+        std::chrono::seconds{ts.tv_sec} +
+        std::chrono::microseconds{ts.tv_usec}};
+    return (std::chrono::duration_cast<std::chrono::milliseconds>(
+                std::chrono::system_clock::now() - boot))
+               .count() /
+           1000;
+  }
+  return 0;
 }
-
-

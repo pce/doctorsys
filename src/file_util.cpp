@@ -1,10 +1,10 @@
 // #include <dirent.h>
-#include <unistd.h>
 #include <filesystem>
 #include <fstream>
+#include <unistd.h>
 // #include <iostream>
-#include <string>
 #include <sstream>
+#include <string>
 #include <vector>
 
 #include "file_util.h"
@@ -14,7 +14,8 @@ using std::to_string;
 using std::vector;
 
 /**
- * @brief Reads Line by Line and returns line where find_str occurs, without find_str
+ * @brief Reads Line by Line and returns line where find_str occurs, without
+ * find_str
  *
  *
  * @param file

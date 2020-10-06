@@ -6,11 +6,9 @@
 
 #include "system.h"
 
-class SystemLinux : public System
-{
-  public:
-	  long int UpTime();
+class SystemLinux : public System {
+public:
+  long int UpTime();
 };
-
 
 #endif
