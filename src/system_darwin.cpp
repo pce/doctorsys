@@ -13,7 +13,6 @@
 
 
 long SystemDarwin::UpTime() {
-    // return 42;
     std::chrono::milliseconds uptime(0u);
     struct timeval ts;
     std::size_t len = sizeof(ts);

@@ -11,7 +11,6 @@
 #include "system_darwin.h"
 
 
-
 std::unique_ptr<System> System::Factory() {
 
 #if defined(__linux__)
@@ -20,7 +19,6 @@ std::unique_ptr<System> System::Factory() {
 #if defined(__APPLE__)
   return std::make_unique<SystemDarwin>();
 #endif
-//&& __MACH__)
 
   return std::make_unique<SystemLinux>();
 //   std::unique_ptr<System> sys = std::make_unique<SystemLinux>();

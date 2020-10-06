@@ -10,6 +10,13 @@ string Format::ElapsedTime(long seconds) {
   int min = seconds / 60;
   seconds = seconds % 60;
   int sec = seconds;
+  int days{0};
+
+  if (h > 24) {
+    days = h / 24;
+    h = h % 24;    
+  }
+
 
   std::string fh = std::to_string(h);
   if (fh.length() < 2) {
@@ -26,5 +33,8 @@ string Format::ElapsedTime(long seconds) {
     fs = "0" + fs;
   }
 
+  if (days > 0) {
+    return string(std::to_string(days) + " Days, " + fh + ":" + fm + ":" + fs);
+  }
   return string(fh + ":" + fm + ":" + fs);
 }
