@@ -19,11 +19,12 @@ long SystemDarwin::UpTime() {
     std::size_t len = sizeof(ts);
     int mib[2] = { CTL_KERN, KERN_BOOTTIME };
     if (sysctl(mib, 2, &ts, &len, NULL, 0) == 0) {
-    uptime = std::chrono::milliseconds(
-        static_cast<unsigned long long>(ts.tv_sec)*1000ULL +
-        static_cast<unsigned long long>(ts.tv_usec)/1000ULL
-    );
+        uptime = std::chrono::milliseconds(
+            static_cast<unsigned long long>(ts.tv_sec)*1000ULL +
+            static_cast<unsigned long long>(ts.tv_usec)/1000ULL
+        );
     }
+    return uptime.count() / 1000;
 }
 
 
