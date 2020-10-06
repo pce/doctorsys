@@ -5,7 +5,11 @@ find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIRS})
 
 include_directories(include)
-file(GLOB SOURCES "src/*.cpp")
+# file(GLOB SOURCES "src/*.cpp")
+SET(SOURCES src/file_util.cpp src/format.cpp src/main.cpp src/screen.cpp src/system.cpp)
+IF(APPLE)
+  SET(SOURCES ${SOURCES} src/system_darwin.cpp)
+ENDIF(APPLE)
 
 add_executable(doctorsys ${SOURCES})
 
