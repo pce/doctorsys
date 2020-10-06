@@ -1,4 +1,5 @@
 #include <sys/sysctl.h>
+#include <chrono> 
 #include <time.h>
 #include <errno.h>
 // #include <dirent.h>
@@ -22,8 +23,9 @@ long SystemDarwin::UpTime() {
             static_cast<unsigned long long>(ts.tv_sec)*1000ULL +
             static_cast<unsigned long long>(ts.tv_usec)/1000ULL
         );
+        return uptime.count() / 1000;
     }
-    return uptime.count() / 1000;
+    return 0;
 }
 
 
