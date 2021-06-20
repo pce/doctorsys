@@ -4,14 +4,14 @@
 // #include <set>
 // #include <string>
 // #include <vector>
+#include "system.h"
+
 #include <memory>
 
-#include "system.h"
 #include "system_darwin.h"
 #include "system_linux.h"
 
 std::unique_ptr<System> System::Factory() {
-
 #if defined(__linux__)
   return std::make_unique<SystemLinux>();
 #endif
@@ -25,4 +25,4 @@ std::unique_ptr<System> System::Factory() {
   // return nullptr;
 }
 
-System::~System() {};
+System::~System(){};

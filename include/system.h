@@ -10,6 +10,7 @@ public:
   static std::unique_ptr<System> Factory();
   virtual ~System() = 0;
   virtual long int UpTime() = 0;
+  virtual std::string SpaceInfo() = 0;
 };
 
 #endif

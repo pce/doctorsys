@@ -1,8 +1,10 @@
 // #include <dirent.h>
+#include <unistd.h>
+
 #include <filesystem>
 #include <fstream>
-#include <unistd.h>
 // #include <iostream>
+#include <cstdint>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -79,4 +81,18 @@ std::string FileUtil::GetNthValue(std::string file, int n, char sep) {
     pos++;
   }
   return token;
+}
+
+std::string FileUtil::GetSpaceInfo() {
+  std::error_code ec;
+  std::stringstream ss;
+  const auto dirs = {"/"}; // , "/tmp", "/home", "/null" };
+  for (auto const &dir : dirs) {
+    const std::filesystem::space_info si = std::filesystem::space(dir, ec);
+    
+    ss << static_cast<std::intmax_t>(si.capacity) << " "
+       << static_cast<std::intmax_t>(si.free) << " "
+       << static_cast<std::intmax_t>(si.available) << " " << dir << "\n";
+  }
+  return ss.str();
 }

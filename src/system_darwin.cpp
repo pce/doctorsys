@@ -1,7 +1,8 @@
-#include <chrono>
 #include <errno.h>
 #include <sys/sysctl.h>
 #include <time.h>
+
+#include <chrono>
 // #include <dirent.h>
 // #include <unistd.h>
 // #include <filesystem>
@@ -11,7 +12,6 @@
 
 #include "file_util.h"
 #include "system_darwin.h"
-
 
 long SystemDarwin::UpTime() {
   struct timeval ts;
@@ -29,3 +29,5 @@ long SystemDarwin::UpTime() {
   }
   return 0;
 }
+
+std::string SystemDarwin::SpaceInfo() { return FileUtil::GetSpaceInfo(); }

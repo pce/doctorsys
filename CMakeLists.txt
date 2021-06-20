@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(doctorsys)
+MESSAGE("Project is ${PROJECT_NAME}")
 
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIRS})
@@ -36,14 +37,23 @@ ELSE(UNIX)
 ENDIF(UNIX)
 
 
-add_executable(doctorsys ${SOURCES})
+# add_definitions(-std=c++17)
+# set( CMAKE_CXX_STANDARD 17 )
+# set( CMAKE_CXX_STANDARD_REQUIRED ON )
 
-set(CMAKE_CXX_STANDARD 17)
-set_property(TARGET doctorsys PROPERTY CXX_STANDARD 17)
-target_link_libraries(doctorsys ${CURSES_LIBRARIES})
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE debug)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 
-# TODO: add fs on Mac/clang
-# target_link_libraries(doctorsys stdc++fs)
 
 # TODO: Run -Werror in CI.
-target_compile_options(doctorsys PRIVATE -Wall -Wextra)
+# target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra)
+
+add_executable(${PROJECT_NAME}  ${SOURCES})
+
+target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
+
+# TODO: add fs on Mac/clang
+# target_link_libraries(${PROJECT_NAME} stdc++fs)
+

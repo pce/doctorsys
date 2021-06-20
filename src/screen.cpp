@@ -1,12 +1,14 @@
-#include <chrono>
+#include "screen.h"
+
 #include <curses.h>
+
+#include <chrono>
 #include <memory>
 #include <string>
 #include <thread>
 #include <vector>
 
 #include "format.h"
-#include "screen.h"
 
 // std::string;
 // std::to_string;
@@ -44,6 +46,7 @@ void Screen::DisplaySystem(std::shared_ptr<System> sys, WINDOW *window,
 
   mvwprintw(window, ++row, 2,
             ("Up Time: " + Format::ElapsedTime(sys->UpTime())).c_str());
+  mvwprintw(window, ++row, 2, ("Space Info: " + sys->SpaceInfo()).c_str());
   wrefresh(window);
 }
 

@@ -1,6 +1,6 @@
-#include <string>
-
 #include "format.h"
+
+#include <string>
 
 using std::string;
 

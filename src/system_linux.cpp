@@ -18,3 +18,5 @@ long SystemLinux::UpTime() {
   }
   return uptime.count() / 1000;
 }
+
+std::string SystemLinux::SpaceInfo() { return FileUtil::GetSpaceInfo(); }

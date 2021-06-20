@@ -9,6 +9,7 @@
 class SystemLinux : public System {
 public:
   long int UpTime();
+  std::string SpaceInfo();
 };
 
 #endif
