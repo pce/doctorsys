@@ -24,3 +24,5 @@ std::unique_ptr<System> System::Factory() {
   //   return std::move(sys);
   // return nullptr;
 }
+
+System::~System() {};

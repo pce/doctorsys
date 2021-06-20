@@ -8,6 +8,7 @@
 class System {
 public:
   static std::unique_ptr<System> Factory();
+  virtual ~System() = 0;
   virtual long int UpTime() = 0;
 };
 
