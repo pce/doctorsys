@@ -5,6 +5,7 @@
 #include <fstream>
 // #include <iostream>
 #include <cstdint>
+#include <cmath>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -83,16 +84,44 @@ std::string FileUtil::GetNthValue(std::string file, int n, char sep) {
   return token;
 }
 
+
+/**
+ * \brief "Human-readable" output.
+ * 
+ * \see https://en.cppreference.com/w/cpp/filesystem/file_size
+ * \param size 
+ * \return std::string 
+ */
+std::string FileUtil::HumanReadable(std::uintmax_t size) 
+{
+  std::stringstream ss;
+  int i{};
+  double mantissa = size;
+  for (; mantissa >= 1024.; mantissa /= 1024., ++i) { }
+  mantissa = std::ceil(mantissa * 10.) / 10.;
+  ss << mantissa << "BKMGTPE"[i];
+  if (i == 0) {
+    return ss.str();
+  }
+  ss << "B (" << size << ')';
+  return ss.str();
+}
+
+
 std::string FileUtil::GetSpaceInfo() {
   std::error_code ec;
   std::stringstream ss;
+
   const auto dirs = {"/"}; // , "/tmp", "/home", "/null" };
   for (auto const &dir : dirs) {
     const std::filesystem::space_info si = std::filesystem::space(dir, ec);
-    
-    ss << static_cast<std::intmax_t>(si.capacity) << " "
-       << static_cast<std::intmax_t>(si.free) << " "
-       << static_cast<std::intmax_t>(si.available) << " " << dir << "\n";
+
+    auto capa = static_cast<std::intmax_t>(si.capacity);
+    // auto free = static_cast<std::intmax_t>(si.free);
+    auto avail = static_cast<std::intmax_t>(si.available); 
+
+    ss << "Capa:  " << HumanReadable(static_cast<uintmax_t>(capa))  << " "
+       << "Avail: " << HumanReadable(static_cast<uintmax_t>(avail)) << " " << dir << "\n";
   }
   return ss.str();
 }
